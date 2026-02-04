@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Điểm Lớp Học</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>🏫 Quản Lý Điểm Lớp CNTT 2.K24</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Họ Tên</th>
+            <th>Toán</th>
+            <th>Văn</th>
+            <th>Anh</th>
+            <th>Trung Bình</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+/* ===== DỮ LIỆU 50 HỌC SINH (NHẬP SẴN) ===== */
+const students = [
+    { name: "Nguyễn Văn An", math: 7, phys: 6, chem: 8 },
+    { name: "Trần Hương Liên", math: 10, phys: 9, chem: 9 },
+    { name: "Vũ Trọng Đức", math: 9, phys: 8, chem: 8 },
+    { name: "Phạm Quang Trường", math: 9, phys: 8, chem: 9 },
+    { name: "Nguyễn Hương Giang", math: 6, phys: 5, chem: 6 },
+    { name: "Vũ Thị Thắm", math: 7, phys: 7, chem: 7 },
+    { name: "Đặng Văn Dương", math: 4, phys: 5, chem: 6 },
+    { name: "Bùi Thị Hạnh", math: 8, phys: 9, chem: 8 },
+    { name: "Đỗ Văn Long", math: 6, phys: 6, chem: 5 },
+    { name: "Ngô Thị Khánh", math: 9, phys: 8, chem: 9 },
+
+    { name: "Nguyễn Văn Long", math: 7, phys: 6, chem: 7 },
+    { name: "Trần Thị Mai", math: 6, phys: 5, chem: 6 },
+    { name: "Lê Văn Phú", math: 8, phys: 7, chem: 8 },
+    { name: "Phạm Thị Đào", math: 9, phys: 9, chem: 9 },
+    { name: "Hoàng Văn Phong", math: 5, phys: 6, chem: 5 },
+    { name: "Vũ Thị Quang", math: 7, phys: 8, chem: 7 },
+    { name: "Đặng Văn Mạnh", math: 6, phys: 6, chem: 6 },
+    { name: "Bùi Thị Hà", math: 8, phys: 8, chem: 9 },
+    { name: "Đỗ Văn Tuấn", math: 4, phys: 5, chem: 5 },
+    { name: "Ngô Thị Oanh", math: 9, phys: 8, chem: 8 },
+
+    { name: "Nguyễn Văn Thành", math: 7, phys: 6, chem: 7 },
+    { name: "Trần Thị Kim Dung", math: 6, phys: 5, chem: 6 },
+    { name: "Lê Văn Quang", math: 8, phys: 7, chem: 8 },
+    { name: "Phạm Thị Mai Hương", math: 9, phys: 9, chem: 9 },
+    { name: "Hoàng Văn Mạnh", math: 5, phys: 6, chem: 5 },
+    { name: "Vũ Thị Hương", math: 7, phys: 8, chem: 7 },
+    { name: "Đặng Văn Cường", math: 6, phys: 6, chem: 6 },
+    { name: "Bùi Thị Vân", math: 8, phys: 8, chem: 9 },
+    { name: "Đỗ Văn Tú", math: 4, phys: 5, chem: 5 },
+    { name: "Ngô Thị Huyền", math: 9, phys: 8, chem: 8 },
+ 
+];
+
+while (students.length < 50) {
+    const i = students.length + 1;
+    students.push({
+        name: "Sinh Viên " + i,
+        math: Math.floor(Math.random() * 6) + 5,
+        phys: Math.floor(Math.random() * 6) + 5,
+        chem: Math.floor(Math.random() * 6) + 5
+    });
+}
+
+/* ===== HIỂN THỊ RA BẢNG ===== */
+const tableBody = document.getElementById("tableBody");
+
+students.forEach((s, index) => {
+    const avg = ((s.math + s.phys + s.chem) / 3).toFixed(1);
+    const row = `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${s.name}</td>
+            <td>${s.math}</td>
+            <td>${s.phys}</td>
+            <td>${s.chem}</td>
+            <td style="color:${avg >= 5 ? 'green' : 'red'}"><b>${avg}</b></td>
+        </tr>
+    `;
+    tableBody.innerHTML += row;
+});
+</script>
+
+</body>
+</html>
